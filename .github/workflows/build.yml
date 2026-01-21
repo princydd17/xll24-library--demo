@@ -24,4 +24,5 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Build
-        run: msbuild /m /p:Configuration=Release /p:Platform=x64 xll_template.sln
+  	run: msbuild /m xll_template.sln /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
+
