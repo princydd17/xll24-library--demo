@@ -2,9 +2,11 @@ name: Windows MSBuild (XLL)
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 env:
   SOLUTION_FILE_PATH: xll_template.sln
@@ -15,10 +17,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
-- name: Build
-  run: msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} /p:Platform=x64 ${{ env.SOLUTION_FILE_PATH }}
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
+      - name: Build
+        run: msbuild /m /p:Configuration=Release /p:Platform=x64 xll_template.sln
